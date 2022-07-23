@@ -1,8 +1,8 @@
 # Storefront Backend Project
 
 ## Getting Started
-1-create .env file and make sure it has the same variables in .env-Example file. 
-2- use the docker-compose.yml and configure it with your environment to create Postgres database
+1-create .env file and make sure it has the same variables in .env-Example file.\
+2- use the docker-compose.yml and configure it with your environment to create Postgres database\
 3- create two database "store_dev" and "store_test"
 
 ### 1- Install 
@@ -23,7 +23,7 @@ db-migrate up
 ## 1- Users
 - End point: "/api/users/create"  to create a new user 
 
-request: 
+- request:\
 method : post
 url: "http://localhost:3000/api/users/create"
 body:
@@ -33,18 +33,18 @@ body:
     "email": "your_email",
     "password": "your_password"
 }
-response: 
+- response:\
 status 200 "signed up successfully"
 Set Cookie with your _jwt used for authorization. 
 
 - End point: "/api/users/userInfo"  to get the signed in user details
 using the _jwt stored in cookies
 
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/users/userInfo"
 
-response: 
+- response:\ 
 status 200 
 {
     "id": 1,
@@ -55,11 +55,11 @@ status 200
 
 - End point: "/api/users/"  to show all users
 
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/users/"
 
-response: 
+- response:\ 
 status 200 array of users
 [
     {
@@ -73,11 +73,11 @@ status 200 array of users
 
 - End point: "/api/users/:id"  to show all users
 
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/users/1"
 
-response: 
+- response:\ 
 status 200 array of users
 {
     "id": 1,
@@ -96,7 +96,7 @@ status 200 array of users
 ## 2- Product
 - End point: "/api/products/create"  to create a new product 
 
-request: 
+- request:\ 
 method : post
 url: "http://localhost:3000/api/products/create"
 body:
@@ -105,7 +105,7 @@ body:
     "price": price,
     "category": "category"
 }
-response: 
+- response:\ 
 status 200 
 {
     "id": 1,
@@ -117,11 +117,11 @@ status 200
 
 - End point: "/api/products/"  to show all products
 
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/products/"
 
-response: 
+- response:\ 
 status 200 [products]
 [
     {
@@ -134,11 +134,11 @@ status 200 [products]
 
 - End point: "/api/products/:id"  to show a product with id
 
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/products/1"
 
-response: 
+- response:\ 
 status 200 [products]
 {
     "id": 1,
@@ -155,11 +155,11 @@ i'm using the _JWT cookies to get the user information and create an order with 
 the user can use this order_id to add products to his order
 
 - End point "/api/orders/create" to create a new Order
-request: 
+- request:\ 
 method : post
 url: "http://localhost:3000/api/orders/create"
 
-response: 
+- response:\ 
 status 200 
 {
     "id": order_id,
@@ -168,11 +168,11 @@ status 200
 }
 
 - End point "/api/orders/" to get all orders made by the current logged in user
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/orders/"
 
-response: 
+- response:\ 
 status 200 
 {
     "id": order_id,
@@ -182,14 +182,14 @@ status 200
 
 
 - End point "/api/orders/complete" to complete an order.
-request: 
+- request:\ 
 method : post
 url: "http://localhost:3000/api/orders/complete"
 body
 {
     "id": order_id
 }
-response: 
+- response:\ 
 status 200 
 {
     "id": "order_id",
@@ -201,7 +201,7 @@ status 200
 ## 4- order-items
 
 - End point "/api/order_item/create" to add a product to an order.
-request: 
+- request:\ 
 method : post
 url: "http://localhost:3000/api/order_item/create"
 body
@@ -211,7 +211,7 @@ body
     "quantity": 4
 }
 
-response: 
+- response:\ 
 status 200 
 {
     "product_id": 1,
@@ -223,11 +223,11 @@ status 200
 - End point "/api/order_item/:id" 
 the id here is the Order_id
 this end point is to get all order-items added to this order
-request: 
+- request:\ 
 method : get
 url: "http://localhost:3000/api/order_item/{order-id}"
 
-response: 
+- response:\ 
 status 200 [order-items]
 [
     {
