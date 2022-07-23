@@ -19,7 +19,7 @@ db-migrate up
 ```
 
 
-### 2- ### End points APIs
+### 2- End points APIs
 ## 1- Users
 - ### End point: "/api/users/create"  to create a new user 
 
