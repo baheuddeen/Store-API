@@ -1,0 +1,1 @@
+DROP TABLE users, products, orders, order_item;

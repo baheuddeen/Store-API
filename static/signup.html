@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign up</title>
+</head>
+<body>
+    <h1>Sign up Page</h1>
+    <form action="/api/users/create" method="post" id="signup-form">
+        <label for="name">Name :</label>
+        <input name="name" id="name" type="text" />
+        <label for="email"> Email</label>
+        <input name="email" id="email" type="text">
+        <label for="password">Password</label>
+        <input name="password" id="password" type="password">
+        <input type="submit" value="Submit">
+    </form>
+
+    <form id="upload-image-form" method="post" action="/api/post/image-user" enctype="multipart/form-data">
+        <input id="upload-image" type="file" name="image" accept="image/*">
+        <div id="image-preview" class="image-preview">
+            <!-- <img id="preview-image-src" src="/assets/images/${imageName}" class="img-thumbnail" alt="...">     -->
+        </div>
+    </form>
+
+
+    <script src="./_assets/js/signup.js"></script>
+</body>
+</html>
