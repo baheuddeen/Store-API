@@ -19,9 +19,9 @@ db-migrate up
 ```
 
 
-### 2- End points APIs
+### 2- ### End points APIs
 ## 1- Users
-- End point: "/api/users/create"  to create a new user 
+- ### End point: "/api/users/create"  to create a new user 
 
 - request:\
 method : post
@@ -37,7 +37,7 @@ body:
 status 200 "signed up successfully"
 Set Cookie with your _jwt used for authorization. 
 
-- End point: "/api/users/userInfo"  to get the signed in user details
+- ### End point: "/api/users/userInfo"  to get the signed in user details
 using the _jwt stored in cookies
 
 - request:\ 
@@ -53,7 +53,7 @@ status 200
     "email": "your_email"
 }
 
-- End point: "/api/users/"  to show all users
+- ### End point: "/api/users/"  to show all users
 
 - request:\ 
 method : get
@@ -71,7 +71,7 @@ status 200 array of users
 ]
 
 
-- End point: "/api/users/:id"  to show all users
+- ### End point: "/api/users/:id"  to show all users
 
 - request:\ 
 method : get
@@ -94,7 +94,7 @@ status 200 array of users
 
 
 ## 2- Product
-- End point: "/api/products/create"  to create a new product 
+- ### End point: "/api/products/create"  to create a new product 
 
 - request:\ 
 method : post
@@ -115,7 +115,7 @@ status 200
 }
 
 
-- End point: "/api/products/"  to show all products
+- ### End point: "/api/products/"  to show all products
 
 - request:\ 
 method : get
@@ -132,7 +132,7 @@ status 200 [products]
     }
 ]
 
-- End point: "/api/products/:id"  to show a product with id
+- ### End point: "/api/products/:id"  to show a product with id
 
 - request:\ 
 method : get
@@ -154,7 +154,7 @@ status 200 [products]
 i'm using the _JWT cookies to get the user information and create an order with a unique order_id
 the user can use this order_id to add products to his order
 
-- End point "/api/orders/create" to create a new Order
+- ### End point "/api/orders/create" to create a new Order
 - request:\ 
 method : post
 url: "http://localhost:3000/api/orders/create"
@@ -167,7 +167,7 @@ status 200
     "status": "status",
 }
 
-- End point "/api/orders/" to get all orders made by the current logged in user
+- ### End point "/api/orders/" to get all orders made by the current logged in user
 - request:\ 
 method : get
 url: "http://localhost:3000/api/orders/"
@@ -181,7 +181,7 @@ status 200
 }
 
 
-- End point "/api/orders/complete" to complete an order.
+- ### End point "/api/orders/complete" to complete an order.
 - request:\ 
 method : post
 url: "http://localhost:3000/api/orders/complete"
@@ -200,7 +200,7 @@ status 200
 
 ## 4- order-items
 
-- End point "/api/order_item/create" to add a product to an order.
+- ### End point "/api/order_item/create" to add a product to an order.
 - request:\ 
 method : post
 url: "http://localhost:3000/api/order_item/create"
@@ -220,9 +220,9 @@ status 200
     "price": 70
 }
 
-- End point "/api/order_item/:id" 
+- ### End point "/api/order_item/:id" 
 the id here is the Order_id
-this end point is to get all order-items added to this order
+this ### End point is to get all order-items added to this order
 - request:\ 
 method : get
 url: "http://localhost:3000/api/order_item/{order-id}"
