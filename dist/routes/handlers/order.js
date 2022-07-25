@@ -20,9 +20,9 @@ const router = express_1.default.Router();
 const order = new order_1.default();
 const show = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const content = (0, getPayloadFromJWT_1.default)(req.cookies._jwt);
-    const userId = content.user_id;
+    const user_id = content.user_id;
     try {
-        const selectedOrders = yield order.show(userId);
+        const selectedOrders = yield order.show(user_id);
         res.json(selectedOrders);
     }
     catch (err) {

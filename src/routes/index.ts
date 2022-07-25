@@ -1,5 +1,5 @@
 import bodyParser from 'body-parser';
-import express, { Response } from 'express';
+import express, { Request, Response } from 'express';
 import auth from './api/auth/auth.js';
 import user from './handlers/user';
 import product from './handlers/product';

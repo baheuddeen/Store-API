@@ -2,8 +2,8 @@ import { NextFunction, Request, Response } from 'express';
 import Joi from 'joi';
 
 const schema = Joi.object({
-  firstName: Joi.string().required().max(50),
-  lastName: Joi.string().required().max(50),
+  first_name: Joi.string().required().max(50),
+  last_name: Joi.string().required().max(50),
   email: Joi.string().email().min(5).required(),
   password: Joi.string().min(8).required(),
 });

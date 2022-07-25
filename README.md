@@ -28,8 +28,8 @@ method : post
 url: "http://localhost:3000/api/users/create"
 body:
 {
-    "firstName": "your_first_name",
-    "lastName": "your_last_name",
+    "first_name": "your_first_name",
+    "last_name": "your_last_name",
     "email": "your_email",
     "password": "your_password"
 }
@@ -48,7 +48,7 @@ url: "http://localhost:3000/api/users/userInfo"
 status 200 
 {
     "id": 1,
-    "first_name": "your_name",
+    "first_name": "yourName",
     "last_name": "your_last_name",
     "email": "your_email"
 }
@@ -64,7 +64,7 @@ status 200 array of users
 [
     {
         "id": 1,
-        "first_name": "your_name",
+        "first_name": "yourName",
         "last_name": "your_last_name",
         "email": "your_email"
     }
@@ -81,7 +81,7 @@ url: "http://localhost:3000/api/users/1"
 status 200 array of users
 {
     "id": 1,
-    "first_name": "your_name",
+    "first_name": "yourName",
     "last_name": "your_last_name",
     "email": "your_email"
 }
@@ -101,7 +101,7 @@ method : post
 url: "http://localhost:3000/api/products/create"
 body:
 {
-    "name": "product_name",
+    "name": "productName",
     "price": price,
     "category": "category"
 }
@@ -109,7 +109,7 @@ body:
 status 200 
 {
     "id": 1,
-    "name": "product_name",
+    "name": "productName",
     "price": price,
     "category": "category"
 }
@@ -126,7 +126,7 @@ status 200 [products]
 [
     {
         "id": 1,
-        "name": "product_name",
+        "name": "productName",
         "price": price,
         "category": "category"
     }
@@ -142,7 +142,7 @@ url: "http://localhost:3000/api/products/1"
 status 200 [products]
 {
     "id": 1,
-    "name": "product_name",
+    "name": "productName",
     "price": price,
     "category": "category"
 }
@@ -221,7 +221,7 @@ status 200
 }
 
 - ### End point "/api/order_item/:id" 
-the id here is the Order_id
+the id here is the order_id
 this ### End point is to get all order-items added to this order
 - request:\ 
 method : get

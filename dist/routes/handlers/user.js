@@ -19,8 +19,6 @@ const verifySignup_js_1 = __importDefault(require("../../utilities/verifySignup.
 const verifyLogin_1 = __importDefault(require("../../utilities/verifyLogin"));
 const generateJWT_1 = __importDefault(require("../../utilities/generateJWT"));
 const validateJWT_1 = __importDefault(require("../../utilities/validateJWT"));
-const typeJWT_1 = __importDefault(require("../../utilities/typeJWT"));
-const getUserInfoGoogle_1 = __importDefault(require("../../utilities/getUserInfoGoogle"));
 const getPayloadFromJWT_1 = __importDefault(require("../../utilities/getPayloadFromJWT"));
 const router = express_1.default.Router();
 const user = new user_1.default();
@@ -59,18 +57,14 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.send('logged in successfully !');
 });
 const userInfo = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    switch (yield (0, typeJWT_1.default)(req.cookies._jwt)) {
-        case 'googleAccount':
-            const googleData = yield (0, getUserInfoGoogle_1.default)(req.cookies._open_id_access_token);
-            console.log(googleData);
-            return res.json(googleData);
-        case 'internalAccount':
-            const payload = (0, getPayloadFromJWT_1.default)(req.cookies._jwt);
-            const email = payload.email;
-            const userData = yield user.getUserByEmail(email);
-            return res.json(userData);
-        default:
-            return res.status(401).json({ msg: 'please signin first' });
+    try {
+        const payload = (0, getPayloadFromJWT_1.default)(req.cookies._jwt);
+        const id = payload.user_id;
+        const userData = yield user.show(id);
+        return res.json(userData);
+    }
+    catch (_a) {
+        return res.status(401).json({ msg: 'please signin first' });
     }
 });
 router.get('/', validateJWT_1.default, index);

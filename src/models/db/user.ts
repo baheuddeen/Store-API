@@ -3,8 +3,8 @@ import client from '../../database.js';
 
 export type UserType = {
   id: number;
-  firstName: string;
-  lastName: string;
+  first_name: string;
+  last_name: string;
   password: string;
   email: string;
 };
@@ -43,7 +43,7 @@ export default class User {
       const password = bcrypt.hashSync(newUser.password, salt);
       const conn = await client.connect();
       const sql = 'INSERT INTO users (first_name, last_name, password, email) VALUES ($1, $2, $3, $4) RETURNING *';
-      const students = await conn.query(sql, [newUser.firstName, newUser.lastName, password, newUser.email]);
+      const students = await conn.query(sql, [newUser.first_name, newUser.last_name, password, newUser.email]);
       conn.release();      
       return students.rows[0];
     } catch (err) {
@@ -57,25 +57,10 @@ export default class User {
       const sql = 'SELECT password FROM users WHERE email=($1)';
       const students = await conn.query(sql, [email]);
       conn.release(); 
-      if (students.rows.length == 0) {
+      if (students.rowCount == 0) {
         throw new Error('this email is not exist');
       }
       return students.rows[0].password;
-    } catch (err) {
-      throw new Error(`Error: ${err}`);
-    }
-  }
-
-  async getUserByEmail(email: string): Promise<User> {
-    try {
-      const conn = await client.connect();
-      const sql = 'SELECT id, first_name, last_name, email FROM users WHERE email=($1)';
-      const user = await conn.query(sql, [`${email}`]);
-      conn.release();
-      if (user.rowCount == 0) {
-        throw new Error('this email is not exist WOW!');
-      }
-      return user.rows[0];
     } catch (err) {
       throw new Error(`Error: ${err}`);
     }

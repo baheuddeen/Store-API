@@ -5,8 +5,6 @@ import verifySignup from '../../utilities/verifySignup.js';
 import verifyLogin from '../../utilities/verifyLogin';
 import generateJWT from '../../utilities/generateJWT';
 import validateJWT from '../../utilities/validateJWT';
-import typeJWT from '../../utilities/typeJWT';
-import getUserInfoGoogle from '../../utilities/getUserInfoGoogle';
 import getPayloadFromJWT from '../../utilities/getPayloadFromJWT';
 
 
@@ -50,21 +48,13 @@ const login = async (req: Request, res: Response) => {
 };
 
 const userInfo = async (req: Request, res: Response) => {
-
-  switch (await typeJWT(req.cookies._jwt)) {
-    case 'googleAccount':            
-      const googleData = await getUserInfoGoogle(req.cookies._open_id_access_token);
-      console.log(googleData);
-      return res.json(googleData);
-
-    case 'internalAccount':
-      const payload = getPayloadFromJWT(req.cookies._jwt) ;   
-      const email =  payload.email;        
-      const userData = await user.getUserByEmail(email);
-      return res.json(userData);
-    
-    default:
-      return res.status(401).json({ msg: 'please signin first' });
+  try {
+    const payload = getPayloadFromJWT(req.cookies._jwt) ;   
+    const id =  payload.user_id;        
+    const userData = await user.show(id);
+    return res.json(userData);
+  } catch {
+    return res.status(401).json({ msg: 'please signin first' });
   }
 };
 

@@ -54,7 +54,7 @@ class User {
                 const password = bcrypt_1.default.hashSync(newUser.password, salt);
                 const conn = yield database_js_1.default.connect();
                 const sql = 'INSERT INTO users (first_name, last_name, password, email) VALUES ($1, $2, $3, $4) RETURNING *';
-                const students = yield conn.query(sql, [newUser.firstName, newUser.lastName, password, newUser.email]);
+                const students = yield conn.query(sql, [newUser.first_name, newUser.last_name, password, newUser.email]);
                 conn.release();
                 return students.rows[0];
             }
@@ -70,27 +70,10 @@ class User {
                 const sql = 'SELECT password FROM users WHERE email=($1)';
                 const students = yield conn.query(sql, [email]);
                 conn.release();
-                if (students.rows.length == 0) {
+                if (students.rowCount == 0) {
                     throw new Error('this email is not exist');
                 }
                 return students.rows[0].password;
-            }
-            catch (err) {
-                throw new Error(`Error: ${err}`);
-            }
-        });
-    }
-    getUserByEmail(email) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const conn = yield database_js_1.default.connect();
-                const sql = 'SELECT id, first_name, last_name, email FROM users WHERE email=($1)';
-                const user = yield conn.query(sql, [`${email}`]);
-                conn.release();
-                if (user.rowCount == 0) {
-                    throw new Error('this email is not exist WOW!');
-                }
-                return user.rows[0];
             }
             catch (err) {
                 throw new Error(`Error: ${err}`);

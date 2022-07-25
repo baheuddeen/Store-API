@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --onSuccess \"nodemon ./dist/server.js\"",
-    "test": "jasmine-ts",
+    "test": "tsc && set ENV=test&& db-migrate --env test up && jasmine && db-migrate --env test reset",
     "eslint": "npx eslint . --ext .ts"
   },
   "author": "Udacity",
