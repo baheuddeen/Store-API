@@ -59,7 +59,7 @@ describe('Testing Endpoint: /api/users/', () => {
       .expect(401);
   });
 
-  it('Testing the authorization endpoint with valid lead', async () => {
+  it('Testing the authorization endpoint with valid User', async () => {
     await request.post('/api/users/login').send({
       email: 'muhammad_handler_test@gmail.com',
       password: 'asd123',

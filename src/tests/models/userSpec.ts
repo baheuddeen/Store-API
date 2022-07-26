@@ -63,7 +63,7 @@ describe('Testing Model: userModel', () => {
     expect(userModel.getPassword).toBeDefined();
   });
 
-  it('Testing the show model to return the lead', async () => {
+  it('Testing the show model to return the user', async () => {
     const testPassword = await userModel.getPassword(baseUser.email);
     expect(testPassword).toBeDefined();
   });
