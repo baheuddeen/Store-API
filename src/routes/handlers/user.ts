@@ -39,9 +39,10 @@ const create = async (req: Request, res: Response) => {
 
 const login = async (req: Request, res: Response) => {
   const password = await user.getPassword(req.body.email);
-  const valid = bcrypt.compareSync(req.body.password, password);    
+  const valid = bcrypt.compareSync(req.body.password, password);  
+    
   if (!valid) {
-    return res.status(401).json({ msg: 'unvalid passeord' });
+    return res.status(401).json({ msg: 'invalid user information' });
   }
   res.cookie('_jwt', generateJWT(req.body.email));
   res.send('logged in successfully !');

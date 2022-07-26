@@ -1,6 +1,8 @@
 import { Pool } from 'pg';
 import dotenv from 'dotenv';
 
+require('pg').defaults.parseInt8 = true;
+
 dotenv.config();
 
 const {
@@ -11,10 +13,6 @@ const {
   POSTGRES_PASSWORD,
   ENV,
 } = process.env;
-
-console.log(ENV);
-console.log(ENV == 'test', ENV);
-
 
 const client = new Pool({
   host: POSTGRES_HOSTNAME,

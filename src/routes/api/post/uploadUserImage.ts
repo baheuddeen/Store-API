@@ -24,7 +24,6 @@ router.post(
   '/',
   upload.single('image'),
   async (req: Request, res: Response) => {
-    console.log(req.file, req.body);
     res.send('successeded');
   },
 );

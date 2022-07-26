@@ -3,13 +3,12 @@ import Joi from 'joi';
 
 const schema = Joi.object({
   email: Joi.string().email().min(5).required(),
-  password: Joi.string().min(8).required(),
+  password: Joi.string().min(6).required(),
 });
 
 export default function verifySignup(req: Request, res: Response, next: NextFunction) {
-  console.log(req.body);
   const error = schema.validate(req.body).error;
-  if (error) {
+  if (error) {    
     return res.status(400).send(error.details[0].message);
   }
   next();
