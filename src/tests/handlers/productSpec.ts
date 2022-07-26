@@ -6,7 +6,7 @@ import { UserType } from '../../models/db/user';
 
 
 const request = supertest(app);
-describe('Testing Endpoint: /api/products/create', () => {
+describe('Testing Endpoint: /api/products/', () => {
   const product :ProductType = {
     name: 'cup',
     price: 10,

@@ -5,7 +5,7 @@ import { UserType } from '../../models/db/user';
 
 
 const request = supertest(app);
-describe('Testing Endpoint: /api/orders/create', () => {
+describe('Testing Endpoint: /api/orders/', () => {
   let token: string;
   let orderId: number;
 

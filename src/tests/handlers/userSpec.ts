@@ -5,7 +5,7 @@ import DataBase from '../../utilities/resetDatabase';
 
 
 const request = supertest(app);
-describe('Testing Endpoint: /api/users/create', () => {
+describe('Testing Endpoint: /api/users/', () => {
   const user = {
     first_name: 'muhammad',
     last_name: 'baheuddeen',

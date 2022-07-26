@@ -7,7 +7,7 @@ import { OrderItemType } from '../../models/db/order_item';
 
 
 const request = supertest(app);
-describe('Testing Endpoint: /api/orders/create', () => {
+describe('Testing Endpoint: /api/order_item/', () => {
   let token: string;
   let orderId: number;
   let productId: number;
