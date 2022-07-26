@@ -1,55 +1,68 @@
-// import { Student, StudentsModel } from '../../models/students';
+import Order, { OrderType } from '../../models/db/order';
+import User from '../../models/db/user';
+import DataBase from '../../utilities/resetDatabase';
 
-// const studentsModel = new StudentsModel();
-// const studentName: string = 'Luke Skywalker';
-// let student: Student;
+const userModel = new User();
+const orderModel = new Order();
+const baseOrder: OrderType = {
+  id: 10,
+  user_id: 0,
+  status: 'active',
+};
 
-// describe('Testing Model: students', () => {
-//   it('Must have a create method', () => {
-//     expect(studentsModel.create).toBeDefined();
-//   });
+let testOrder: OrderType;
+describe('Testing Model: orderModel', () => {
+  beforeAll(async () => {
+    const user = await userModel.create({
+      id:1,
+      first_name: 'muhammad',
+      last_name: 'mahmoud',
+      password: 'beep-boop',
+      email:'test_user@gmail.com',
+    });
+    
+    if (user.id) {
+      baseOrder.user_id = user.id;
+    } 
+    
+  });
 
-//   it('Testing the create model with a student', async () => {
-//     student = await studentsModel.create(studentName);
-//     expect(student.name).toEqual(studentName);
-//   });
+  it('Must have a create method', () => {
+    expect(orderModel.create).toBeDefined();
+  });
+  it('Testing the create model with a order', async () => {
+    testOrder = await orderModel.create(baseOrder);        
+    expect(testOrder).toEqual({
+      id: 10,
+      user_id: 1,
+      status: 'active',
+    });
+  });
 
-//   it('Must have an index method', () => {
-//     expect(studentsModel.index).toBeDefined();
-//   });
+  
+  it('Must have a show method', () => {
+    expect(orderModel.show).toBeDefined();
+  });
+  it('Testing the show model to return the order', async () => {
+    const foundOrder = await orderModel.show(baseOrder.user_id);
+     
+    expect(foundOrder[0]).toEqual({
+      id: 10,
+      user_id: 1,
+      status: 'active',
+    } as OrderType);
+  });
 
-//   it('Testing the index model to include the student', async () => {
-//     const students = await studentsModel.index();
-//     expect(students).toContain(student);
-//   });
-
-//   it('Must have a show method', () => {
-//     expect(studentsModel.show).toBeDefined();
-//   });
-
-//   it('Testing the show model to return the student', async () => {
-//     const foundStudents = await studentsModel.show(student.id as number);
-//     expect(foundStudents).toEqual(student);
-//   });
-
-//   it('Must have an update method', () => {
-//     expect(studentsModel.update).toBeDefined();
-//   });
-
-//   it('Testing the update model to return the updated student', async () => {
-//     const updatedStudent = await studentsModel.update({
-//       ...student,
-//       name: 'Anakin Skywalker',
-//     });
-//     expect({ ...student, name: 'Anakin Skywalker' }).toEqual(updatedStudent);
-//   });
-
-//   it('Must have a delete method', () => {
-//     expect(studentsModel.delete).toBeDefined();
-//   });
-
-//   it('Testing the delete model to return the deleted student', async () => {
-//     const deletedStudent = await studentsModel.delete(student.id as number);
-//     expect(deletedStudent.id).toEqual(student.id);
-//   });
-// });
+  it('Must have an complete method', () => {
+    expect(orderModel.complete).toBeDefined();
+  });
+  it('Testing the complete model to complpete the order', async () => {
+    const completedOrder = await orderModel.complete(baseOrder.id!);
+    expect(completedOrder.status).toEqual('completed');
+  });
+  
+  afterAll(async () => {
+    const database = new DataBase();
+    await database.reset();
+  });
+});

@@ -1,4 +1,5 @@
 import User, { UserType } from '../../models/db/user';
+import DataBase from '../../utilities/resetDatabase';
 
 const userModel = new User();
 const baseUser: UserType = {
@@ -14,9 +15,7 @@ describe('Testing Model: userModel', () => {
     expect(userModel.create).toBeDefined();
   });
   it('Testing the create model with a user', async () => {
-    testUser = await userModel.create(baseUser);
-    console.log(testUser);
-    
+    testUser = await userModel.create(baseUser);    
     expect({
       first_name: testUser.first_name,
       last_name: testUser.last_name,
@@ -46,7 +45,7 @@ describe('Testing Model: userModel', () => {
   });
 
   it('Testing the show model to return the user', async () => {
-    const foundUser = await userModel.show(baseUser.id);
+    const foundUser = await userModel.show(baseUser.id!);
     expect({
       id: foundUser.id,
       first_name: foundUser.first_name,
@@ -67,5 +66,10 @@ describe('Testing Model: userModel', () => {
   it('Testing the show model to return the lead', async () => {
     const testPassword = await userModel.getPassword(baseUser.email);
     expect(testPassword).toBeDefined();
+  });
+
+  afterAll(async () => {
+    const database = new DataBase();
+    await database.reset();
   });
 });

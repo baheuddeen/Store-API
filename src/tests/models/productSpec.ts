@@ -1,65 +1,65 @@
-// import { Session, SessionModel } from '../../models/sessions';
-// import { LeadModel } from '../../models/session_leads';
+import Product, { ProductType } from '../../models/db/product';
+import DataBase from '../../utilities/resetDatabase';
 
-// const sessionModel = new SessionModel();
-// const leadModel = new LeadModel();
-// const baseSession: Session = {
-//   date: '12/12/2012',
-//   title: 'Test Session',
-//   slId: 0,
-// };
-// let session: Session;
+const productModel = new Product();
+const baseProduct: ProductType = {
+  id: 1,
+  name: 'footBall',
+  price: 15,
+  category: 'Toys',
+};
 
-// describe('Testing Model: session', () => {
-//   beforeAll(async () => {
-//     const lead = await leadModel.create({
-//       name: 'C-3PO',
-//       email: 'C@3PO.com',
-//       password: 'beep-boop',
-//     });
-//     if (lead.id) baseSession.slId = lead.id;
-//   });
-//   it('Must have a create method', () => {
-//     expect(sessionModel.create).toBeDefined();
-//   });
+let testProduct: ProductType;
+describe('Testing Model: productModel', () => {
+  it('Must have a create method', () => {
+    expect(productModel.create).toBeDefined();
+  });
+  it('Testing the create model with a product', async () => {
+    testProduct = await productModel.create(baseProduct);    
+    expect({
+      name: testProduct.name,
+      price: testProduct.price,
+      category: testProduct.category,
+    }).toEqual({
+      name: 'footBall',
+      price: 15,
+      category: 'Toys',
+    });
+  });
+  it('Must have an index method', () => {
+    expect(productModel.index).toBeDefined();
+  });
 
-//   it('Testing the create model with a session', async () => {
-//     session = await sessionModel.create(baseSession);
-//     expect({
-//       title: session.title,
-//       slId: session.slId,
-//     }).toEqual({
-//       title: baseSession.title,
-//       slId: baseSession.slId,
-//     });
-//   });
+  it('Testing the index model to include the product', async () => {
+    const users = await productModel.index();
+    expect(users).toContain({
+      id: 1,
+      name: 'footBall',
+      price: 15,
+      category: 'Toys',
+    } as ProductType );
+  });
 
-//   it('Must have an index method', () => {
-//     expect(sessionModel.index).toBeDefined();
-//   });
+  it('Must have a show method', () => {
+    expect(productModel.show).toBeDefined();
+  });
 
-//   it('Must have a show method', () => {
-//     expect(sessionModel.show).toBeDefined();
-//   });
+  it('Testing the show model to return the product', async () => {
+    const foundProduct = await productModel.show(baseProduct.id!);
+     
+    expect({
+      name: foundProduct.name,
+      price: foundProduct.price,
+      category: foundProduct.category,
+    }).toEqual({
+      name: 'footBall',
+      price: 15,
+      category: 'Toys',
+    });
+  });
 
-//   it('Must have an update method', () => {
-//     expect(sessionModel.update).toBeDefined();
-//   });
-
-//   it('Testing the update model to return the updated session', async () => {
-//     const updatedSession = await sessionModel.update({
-//       ...session,
-//       title: 'Test session 2',
-//     });
-//     expect(updatedSession.title).toEqual('Test session 2');
-//   });
-
-//   it('Must have a delete method', () => {
-//     expect(sessionModel.delete).toBeDefined();
-//   });
-
-//   it('Testing the delete model to return the deleted session', async () => {
-//     const deletedSession = await sessionModel.delete(session.id as number);
-//     expect(deletedSession.id).toEqual(session.id);
-//   });
-// });
+  afterAll(async () => {
+    const database = new DataBase();
+    await database.reset();
+  });
+});

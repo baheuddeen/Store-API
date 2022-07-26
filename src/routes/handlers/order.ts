@@ -9,9 +9,9 @@ const order = new Order();
 
 const show = async (req: Request, res: Response) => {
   const content = getPayloadFromJWT(req.cookies._jwt);
-  const user_id = content.user_id;
+  const userId = content.user_id;
   try {
-    const selectedOrders = await order.show(user_id);
+    const selectedOrders = await order.show(userId);
     res.json(selectedOrders);
   } catch (err) {
     res.status(400).send(`${err}`);

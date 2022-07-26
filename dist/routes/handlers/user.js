@@ -51,7 +51,7 @@ const login = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const password = yield user.getPassword(req.body.email);
     const valid = bcrypt_1.default.compareSync(req.body.password, password);
     if (!valid) {
-        return res.status(401).json({ msg: 'unvalid passeord' });
+        return res.status(401).json({ msg: 'invalid user information' });
     }
     res.cookie('_jwt', (0, generateJWT_1.default)(req.body.email));
     res.send('logged in successfully !');

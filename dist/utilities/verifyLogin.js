@@ -6,10 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const joi_1 = __importDefault(require("joi"));
 const schema = joi_1.default.object({
     email: joi_1.default.string().email().min(5).required(),
-    password: joi_1.default.string().min(8).required(),
+    password: joi_1.default.string().min(6).required(),
 });
 function verifySignup(req, res, next) {
-    console.log(req.body);
     const error = schema.validate(req.body).error;
     if (error) {
         return res.status(400).send(error.details[0].message);

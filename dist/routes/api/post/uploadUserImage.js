@@ -31,7 +31,6 @@ const upload = (0, multer_1.default)({
 });
 const router = express_1.default.Router();
 router.post('/', upload.single('image'), (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(req.file, req.body);
     res.send('successeded');
 }));
 exports.default = router;

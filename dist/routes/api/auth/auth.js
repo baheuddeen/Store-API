@@ -31,7 +31,6 @@ router.get('/', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 grant_type: 'authorization_code',
             },
         });
-        console.log(result.data);
         res.cookie('_jwt', result.data.id_token);
         res.cookie('_openId_access_token', result.data.access_token);
         res.cookie('_openId_refresh_token', result.data.refresh_token);

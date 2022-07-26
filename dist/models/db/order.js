@@ -19,7 +19,7 @@ class Order {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const conn = yield database_js_1.default.connect();
-                const sql = 'SELECT id, status FROM orders WHERE user_id=($1)';
+                const sql = 'SELECT * FROM orders WHERE user_id=($1)';
                 const products = yield conn.query(sql, [user_id]);
                 conn.release();
                 if (!products.rows[0])
@@ -33,7 +33,6 @@ class Order {
     }
     create(newOrder) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(newOrder);
             try {
                 const conn = yield database_js_1.default.connect();
                 const sql = 'INSERT INTO orders (id, user_id, status) VALUES ($1, $2, $3) RETURNING *';

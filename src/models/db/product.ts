@@ -1,14 +1,13 @@
 import client from '../../database.js';
 
-type ProductType = {
-  id: number;
+export type ProductType = {
+  id?: number;
   name: string;
   price: number;
   category: string;
 };
 
 export default class Product {
-  // retrive all users
   async index():Promise<ProductType[]> {
     try {
       const conn = await client.connect();
@@ -21,7 +20,6 @@ export default class Product {
     }
   }
 
-  // get user with certien id
   async show(id: number):Promise<ProductType> {
     try {
       const conn = await client.connect();

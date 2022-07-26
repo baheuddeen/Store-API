@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const database_js_1 = __importDefault(require("../../database.js"));
 class Product {
-    // retrive all users
     index() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -29,7 +28,6 @@ class Product {
             }
         });
     }
-    // get user with certien id
     show(id) {
         return __awaiter(this, void 0, void 0, function* () {
             try {

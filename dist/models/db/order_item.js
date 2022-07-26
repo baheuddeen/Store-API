@@ -33,7 +33,6 @@ class OrderItem {
     }
     create(newOrderItem) {
         return __awaiter(this, void 0, void 0, function* () {
-            console.log(newOrderItem);
             try {
                 let conn = yield database_js_1.default.connect();
                 let sql = 'SELECT price FROM products WHERE id =($1)';
@@ -42,7 +41,6 @@ class OrderItem {
                 if (!price.rowCount)
                     throw Error(`no product with this id ${newOrderItem.product_id}`);
                 conn = yield database_js_1.default.connect();
-                console.log(price.rows[0]);
                 const totalPrice = newOrderItem.quantity * price.rows[0].price;
                 sql = 'INSERT INTO order_item (order_id, product_id, quantity, price) VALUES ($1, $2, $3, $4) RETURNING *';
                 const products = yield conn.query(sql, [newOrderItem.order_id, newOrderItem.product_id, newOrderItem.quantity, totalPrice]);

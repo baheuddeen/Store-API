@@ -1,6 +1,6 @@
 import client from '../../database.js';
 
-type OrderType = {
+export type OrderType = {
   id?: number;
   user_id: number;
   status: string;
@@ -11,7 +11,7 @@ export default class Order {
   async show(user_id: number):Promise<OrderType[]> {
     try {
       const conn = await client.connect();
-      const sql = 'SELECT id, status FROM orders WHERE user_id=($1)';
+      const sql = 'SELECT * FROM orders WHERE user_id=($1)';
       const products = await conn.query(sql, [user_id]);
       conn.release();      
       if (!products.rows[0]) throw Error(`no order for id = ${user_id}`);
@@ -21,9 +21,7 @@ export default class Order {
     }
   }
 
-  async create(newOrder: OrderType): Promise<OrderType> {
-    console.log(newOrder);
-        
+  async create(newOrder: OrderType): Promise<OrderType> {        
     try {
       const conn = await client.connect();
       const sql = 'INSERT INTO orders (id, user_id, status) VALUES ($1, $2, $3) RETURNING *';
