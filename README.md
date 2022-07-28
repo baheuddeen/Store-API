@@ -2,9 +2,20 @@
 
 ## Getting Started
 1- create .env file and make sure it has the same variables in .env-Example file.\
+the environment variables should have the follwoing 
+```
+POSTGRES_HOSTNAME
+POSTGRES_DATABASE_DEV
+POSTGRES_DATABASE_TEST
+POSTGRES_USERNAME
+POSTGRES_PASSWORD
+JWT_CLIENT_SECRET
+ENV
+```
 2- use the docker-compose.yml and configure it with your environment to create Postgres database\
 3- create two database "store_dev" and "store_test".\
-4- we recommend to use "5432" for DB server port.
+4- use "5432" for DB server port.
+
 
 ### 1- Install 
 - to install node_modules
@@ -13,7 +24,7 @@ run
 npm install
 ```
 
--  to create the database tables.
+-  apply the migration create the database tables.
 run 
 ```
 db-migrate up
