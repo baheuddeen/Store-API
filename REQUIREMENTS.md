@@ -13,33 +13,42 @@ These are the notes from a meeting with the frontend developer that describe wha
 - Index [token required]
 - Show [token required]
 - Create 
-- userInfo
+- userInfo [token required]
 
 #### Orders
 - Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- Completed Orders by user (args: user id)[token required]
 
 ## Data Shapes
 #### Product
--  id
-- name
-- price
-- category
+| column        | data_type |
+| ------------- |:-------------:|
+| id            | Serial Primary key     |
+| name          | VARCHAR(50)     |
+| price         | FLOAT     |
+| category      | VARCHAR(50)     |
+
 
 #### User
-- id
-- first_name
-- last_name
-- password
-- email
+| column             | data_type |
+| ------------------ | ----------:|
+| id                 | SERIAL PRIMARY KEY |
+| first_name         | VARCHAR(50) |
+| last_name          | VARCHAR(50) |
+| email              | VARCHAR(100) UNIQUE|
+| password           | VARCHAR(200) |
 
 #### Orders
-- id
-- user_id
-- status ["active" or "completed"]
+| column             | data_type |
+| ------------------ | ----------:|
+| id                 | BIGINT Primary Key|
+| user_id            | INT FOREIGN Key REFERENCES user(id) |
+| status             | VARCHAR(50) |
 
 ### order-items
-- product_id
-- order_id
-- quantity 
-- price
+| column             | data_type |
+| ------------------ | ----------:|
+| product_id         | INT FOREIGN KEY REFERENCES product(id)|
+| order_id           | BIGINT FOREIGN KEY REFERENCES Orders(id)|
+| quantity           | INT |
+| price              | FLOAT |

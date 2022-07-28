@@ -1,9 +1,10 @@
 # Storefront Backend Project
 
 ## Getting Started
-1-create .env file and make sure it has the same variables in .env-Example file.\
+1- create .env file and make sure it has the same variables in .env-Example file.\
 2- use the docker-compose.yml and configure it with your environment to create Postgres database\
-3- create two database "store_dev" and "store_test"
+3- create two database "store_dev" and "store_test".\
+4- we recommend to use "5432" for DB server port.
 
 ### 1- Install 
 - to install node_modules
